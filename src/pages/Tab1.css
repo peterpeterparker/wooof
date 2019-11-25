@@ -1,4 +1,10 @@
-.welcome-card img {
-  max-height: 35vh;
+.welcome-card .welcome-card-container {
+  height: 35vh;
   overflow: hidden;
+}
+
+.welcome-card .welcome-card-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
