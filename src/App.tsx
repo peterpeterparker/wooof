@@ -1,16 +1,16 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs
+    IonApp,
+    IonIcon,
+    IonLabel,
+    IonRouterOutlet,
+    IonTabBar,
+    IonTabButton,
+    IonTabs
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { apps, flash, send } from 'ionicons/icons';
+import {IonReactRouter} from '@ionic/react-router';
+import {apps, send} from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -35,34 +35,47 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+import {library, config} from '@fortawesome/fontawesome-svg-core';
+
+import {faPaw} from '@fortawesome/free-solid-svg-icons';
+
+// https://github.com/FortAwesome/react-fontawesome/issues/134#issuecomment-471940596
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
+config.autoAddCss = false;
+
+library.add(faPaw);
+
 const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab2/details" component={Details} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={flash} />
-            <IonLabel>Tab One</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={apps} />
-            <IonLabel>Tab Two</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={send} />
-            <IonLabel>Tab Three</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
+    <IonApp>
+        <IonReactRouter>
+            <IonTabs>
+                <IonRouterOutlet>
+                    <Route path="/tab1" component={Tab1} exact={true}/>
+                    <Route path="/tab2" component={Tab2} exact={true}/>
+                    <Route path="/tab2/details" component={Details}/>
+                    <Route path="/tab3" component={Tab3}/>
+                    <Route path="/" render={() => <Redirect to="/tab1"/>} exact={true}/>
+                </IonRouterOutlet>
+                <IonTabBar slot="bottom">
+                    <IonTabButton tab="tab1" href="/tab1">
+                        <FontAwesomeIcon icon={["fas", "paw"]} size="2x"/>
+                        <IonLabel>Doggos</IonLabel>
+                    </IonTabButton>
+                    <IonTabButton tab="tab2" href="/tab2">
+                        <IonIcon icon={apps}/>
+                        <IonLabel>Tab Two</IonLabel>
+                    </IonTabButton>
+                    <IonTabButton tab="tab3" href="/tab3">
+                        <IonIcon icon={send}/>
+                        <IonLabel>Tab Three</IonLabel>
+                    </IonTabButton>
+                </IonTabBar>
+            </IonTabs>
+        </IonReactRouter>
+    </IonApp>
 );
 
 export default App;
