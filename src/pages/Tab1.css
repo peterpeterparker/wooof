@@ -1,6 +1,7 @@
 .welcome-card .welcome-card-container {
   height: 35vh;
   overflow: hidden;
+  background: var(--ion-color-medium);
 }
 
 .welcome-card .welcome-card-container img {

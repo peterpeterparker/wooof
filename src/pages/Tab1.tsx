@@ -19,11 +19,12 @@ import {book, build, colorFill, grid} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './Tab1.css';
 import {Dog} from '../models/dog';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Tab1: React.FC = () => {
 
     const [hasError, setErrors] = useState(false);
-    const [dogs, setDogs] = useState<Dog | undefined>(undefined);
+    const [dog, setDog] = useState<Dog | undefined>(undefined);
 
     async function fetchData() {
         const res: Response = await fetch('https://dog.ceo/api/breeds/image/random');
@@ -31,7 +32,7 @@ const Tab1: React.FC = () => {
             .json()
             .then((res) => {
                 console.log(res);
-                setDogs(res)
+                setDog(res)
             })
             .catch(err => setErrors(err));
     }
@@ -42,24 +43,22 @@ const Tab1: React.FC = () => {
 
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Doggos</IonTitle>
-                </IonToolbar>
-            </IonHeader>
             <IonContent>
+                <IonToolbar>
+                    <IonTitle></IonTitle>
+                </IonToolbar>
+
                 <IonCard className="welcome-card">
                     <div className="welcome-card-container">
-                        <img src={dogs ? dogs.message : '/assets/shapes.svg'} alt=""/>
+                        {renderDog()}
                     </div>
                     <IonCardHeader>
-                        <IonCardSubtitle>Wooof</IonCardSubtitle>
+                        <IonCardSubtitle>So much doggos <FontAwesomeIcon icon={["fas", "paw"]} size="1x"/></IonCardSubtitle>
                         <IonCardTitle>Welcome to Wooof</IonCardTitle>
                     </IonCardHeader>
                     <IonCardContent>
                         <p>
-                            Now that your app has been created, you'll want to start building out features and
-                            components. Check out some of the resources below for next steps.
+                            An application to browse the internet's biggest collection of open source dog pictures.
                         </p>
                     </IonCardContent>
                 </IonCard>
@@ -90,6 +89,14 @@ const Tab1: React.FC = () => {
             </IonContent>
         </IonPage>
     );
+
+    function renderDog() {
+        if (!dog) {
+            return undefined;
+        }
+
+        return <img src={dog.message} alt="A random dog"/>
+    }
 };
 
 export default Tab1;
