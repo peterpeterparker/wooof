@@ -10,15 +10,15 @@ import {
     IonLabel,
     IonList,
     IonListHeader,
-    IonPage,
-    IonTitle,
-    IonToolbar
+    IonPage
 } from '@ionic/react';
 import {book, build, colorFill, grid} from 'ionicons/icons';
 import React, {useEffect, useState} from 'react';
 import './Tab1.css';
 import {Dog} from '../models/dog';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+
+import Header from '../components/header/header';
 
 const Tab1: React.FC = () => {
 
@@ -41,10 +41,9 @@ const Tab1: React.FC = () => {
 
     return (
         <IonPage>
+            <Header></Header>
+
             <IonContent>
-                <IonToolbar>
-                    <IonTitle></IonTitle>
-                </IonToolbar>
 
                 <IonCard className="welcome-card">
                     <div className="welcome-card-container">

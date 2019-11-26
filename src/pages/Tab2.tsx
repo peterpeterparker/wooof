@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {IonContent, IonHeader, IonCard, IonPage, IonTitle, IonToolbar, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
+import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import './Tab2.css';
+
+import Header from '../components/header/header';
 
 const Tab2: React.FC = () => {
 
@@ -39,11 +41,8 @@ const Tab2: React.FC = () => {
 
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle className="ion-text-uppercase">So much doggos</IonTitle>
-                </IonToolbar>
-            </IonHeader>
+            <Header></Header>
+
             <IonContent>
                 <div className="doggos-container">
                     {renderDogs()}
