@@ -3,7 +3,7 @@ import {IonContent, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '
 import {Dogs} from '../models/dog';
 import {pickerController} from '@ionic/core';
 
-import Header from '../components/header/header';
+import Header from '../components/header/Header';
 import {BreedsService} from '../services/breeds/breeds.service';
 import {PickerColumnOption} from '@ionic/core/dist/types/components/picker/picker-interface';
 import Doggos from '../components/doggos/Doggos';

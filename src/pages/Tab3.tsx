@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {IonPage, IonContent, useIonViewWillEnter} from '@ionic/react';
-import Header from '../components/header/header';
+import Header from '../components/header/Header';
 
 import {Plugins} from '@capacitor/core';
 import Doggos from '../components/doggos/Doggos';

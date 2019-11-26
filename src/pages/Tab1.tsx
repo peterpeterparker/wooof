@@ -18,7 +18,7 @@ import './Tab1.css';
 import {Dog} from '../models/dog';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-import Header from '../components/header/header';
+import Header from '../components/header/Header';
 
 const Tab1: React.FC = () => {
 
