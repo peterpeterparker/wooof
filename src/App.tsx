@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {
     IonApp,
@@ -7,7 +7,7 @@ import {
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
-    IonTabs, useIonViewWillEnter
+    IonTabs
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 import {send} from 'ionicons/icons';
@@ -59,9 +59,13 @@ library.add(faPaw);
 
 const App: React.FC = () => {
 
-    useIonViewWillEnter(async () => {
+    async function hideSplashScreen() {
         await SplashScreen.hide();
-    });
+    }
+
+    useEffect(() => {
+        hideSplashScreen();
+    }, []);
 
     return <IonApp>
         <IonReactRouter>
