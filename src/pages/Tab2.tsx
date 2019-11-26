@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IonContent, IonHeader, IonCard, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import {IonContent, IonHeader, IonCard, IonPage, IonTitle, IonToolbar, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import './Tab2.css';
 
@@ -9,6 +9,8 @@ const Tab2: React.FC = () => {
 
     const [dogsEven, setDogsEven] = useState<string[]>([]);
     const [dogsOdd, setDogsOdd] = useState<string[]>([]);
+
+    const [disableInfiniteScroll, setDisableInfiniteScroll] = useState<boolean>(false);
 
     async function fetchData() {
         const res: Response = await fetch('https://dog.ceo/api/breeds/image/random/50');
@@ -29,6 +31,12 @@ const Tab2: React.FC = () => {
         fetchData();
     }, []);
 
+    async function searchNext(e: CustomEvent<void>) {
+        await fetchData();
+
+        (e.target as HTMLIonInfiniteScrollElement).complete();
+    }
+
     return (
         <IonPage>
             <IonHeader>
@@ -40,6 +48,13 @@ const Tab2: React.FC = () => {
                 <div className="doggos-container">
                     {renderDogs()}
                 </div>
+
+                <IonInfiniteScroll threshold="100px" disabled={disableInfiniteScroll}
+                                     onIonInfinite={(e: CustomEvent<void>) => searchNext(e)}>
+                    <IonInfiniteScrollContent
+                        loadingText="Loading more good doggos...">
+                    </IonInfiniteScrollContent>
+                </IonInfiniteScroll>
             </IonContent>
         </IonPage>
     );
