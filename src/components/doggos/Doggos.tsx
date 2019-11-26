@@ -44,7 +44,7 @@ const Doggos: React.FC<DoggosProps> = ({routeTab, dogsEven, dogsOdd}) => {
             const image: string = split && split.length >= 6 ? encodeURI(split[5]) : '';
 
             return <IonCard key={`${key}-${i}`} routerLink={`/${routeTab}/details/${breed}/${image}`}>
-                <img src={dogImgUrl} alt={`A random dog ${image}`}/>
+                <deckgo-lazy-img img-src={dogImgUrl} img-alt={`A random dog ${image}`}></deckgo-lazy-img>
             </IonCard>
         });
     }

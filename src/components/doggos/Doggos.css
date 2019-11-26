@@ -1,3 +1,7 @@
+ion-card[class*="ion-card"] {
+    --background: var(--ion-color-light);
+}
+
 div.dogs-container {
     display: flex;
     flex-direction: row;
@@ -9,4 +13,11 @@ div.dogs-container div.dogs-column {
     flex-grow: 1;
     flex-basis: 50%;
     max-width: 50%;
+}
+
+deckgo-lazy-img {
+    --deckgo-lazy-img-width: 100%;
+    --deckgo-lazy-img-height: auto;
+    --deckgo-lazy-img-display: block;
+    --deckgo-lazy-img-object-fit: cover;
 }
