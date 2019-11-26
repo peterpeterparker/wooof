@@ -10,10 +10,10 @@ import {
     IonLabel,
     IonList,
     IonListHeader,
-    IonPage
+    IonPage, useIonViewWillEnter
 } from '@ionic/react';
 import {book, build, colorFill, grid} from 'ionicons/icons';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './Tab1.css';
 import {Dog} from '../models/dog';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -35,9 +35,9 @@ const Tab1: React.FC = () => {
             .catch(err => setErrors(err));
     }
 
-    useEffect( () => {
-        fetchData();
-    }, []);
+    useIonViewWillEnter(async () => {
+        await fetchData();
+    });
 
     return (
         <IonPage>

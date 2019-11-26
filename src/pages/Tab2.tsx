@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent, useIonViewWillEnter} from '@ionic/react';
+import React, {useEffect, useState} from 'react';
+import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import './Tab2.css';
 import {pickerController} from '@ionic/core';
@@ -17,19 +17,25 @@ const Tab2: React.FC = () => {
 
     const [disableInfiniteScroll, setDisableInfiniteScroll] = useState<boolean>(false);
 
-    async function fetchData() {
-        const res: Response = await fetch('https://dog.ceo/api/breeds/image/random/50');
+    const [breed, setBreed] = useState<string | undefined>(undefined);
+
+    async function fetchData(reset: boolean) {
+        const even: string[] = reset ? [] : dogsEven;
+        const odd: string[] = reset ? [] : dogsOdd;
+
+        const url: string = breed ? `https://dog.ceo/api/breed/${breed.split(' ').join('/')}/images/random/50` : 'https://dog.ceo/api/breeds/image/random/50';
+
+        const res: Response = await fetch(url);
         res
             .json()
-            .then((res) => {
+            .then(async (res) => {
                 const dogs: Dogs = res;
 
                 if (dogs && dogs.message && dogs.message.length > 0) {
-                    setDogsEven([...dogsEven, ...dogs.message.filter((_a, i) => i % 2)]);
-                    setDogsOdd([...dogsOdd, ...dogs.message.filter((_a, i) => !(i % 2))]);
+                    setDogsEven([...even, ...dogs.message.filter((_a, i) => i % 2)]);
+                    setDogsOdd([...odd, ...dogs.message.filter((_a, i) => !(i % 2))]);
 
                     setDisableInfiniteScroll(dogs.message.length < 50);
-
                 } else {
                     setDisableInfiniteScroll(true);
                 }
@@ -37,12 +43,12 @@ const Tab2: React.FC = () => {
             .catch(err => setErrors(err));
     }
 
-    useIonViewWillEnter(async () => {
-        await fetchData();
-    });
+    useEffect( () => {
+        fetchData(true);
+    }, [breed]);
 
     async function searchNext(e: CustomEvent<void>) {
-        await fetchData();
+        await fetchData(false);
 
         (e.target as HTMLIonInfiniteScrollElement).complete();
     }
@@ -68,8 +74,8 @@ const Tab2: React.FC = () => {
                     },
                     {
                         text: 'Confirm',
-                        handler: (value) => {
-                            console.log(`Got Value`, value);
+                        handler: (selectedValue) => {
+                            setBreed(selectedValue && selectedValue.breed.value !== 'no filter' ? selectedValue.breed.value : undefined);
                         }
                     }
                 ]
@@ -109,15 +115,15 @@ const Tab2: React.FC = () => {
 
         return <div className="dogs-container">
             <div className="dogs-column">
-                {renderDogsColumn(dogsOdd)}
+                {renderDogsColumn(dogsOdd, 'odd')}
             </div>
             <div className="dogs-column">
-                {renderDogsColumn(dogsEven)}
+                {renderDogsColumn(dogsEven, 'even')}
             </div>
         </div>;
     }
 
-    function renderDogsColumn(dogs: string[]) {
+    function renderDogsColumn(dogs: string[], key: string) {
         if (!dogs || dogs.length <= 0) {
             return undefined;
         }
@@ -129,8 +135,8 @@ const Tab2: React.FC = () => {
             const breed: string = split && split.length >= 5 ? encodeURI(split[4]) : '';
             const image: string = split && split.length >= 6 ? encodeURI(split[5]) : '';
 
-            return <IonCard key={i} routerLink={`/tab2/details/${breed}/${image}`}>
-                <img src={dogImgUrl} alt={`A random dog with index ${i}`}/>
+            return <IonCard key={`${key}-${i}`} routerLink={`/tab2/details/${breed}/${image}`}>
+                <img src={dogImgUrl} alt={`A random dog ${image}`}/>
             </IonCard>
         });
     }
