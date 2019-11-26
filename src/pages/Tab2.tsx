@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import './Tab2.css';
@@ -9,6 +9,8 @@ import {BreedsService} from '../services/breeds/breeds.service';
 import {PickerColumnOption} from '@ionic/core/dist/types/components/picker/picker-interface';
 
 const Tab2: React.FC = () => {
+
+    const refContent = useRef(null);
 
     const [hasError, setErrors] = useState(false);
 
@@ -39,6 +41,11 @@ const Tab2: React.FC = () => {
                 } else {
                     setDisableInfiniteScroll(true);
                 }
+
+                // Hack to scroll top
+                setTimeout(async () => {
+                    await autoScrollToTop();
+                }, 100);
             })
             .catch(err => setErrors(err));
     }
@@ -85,11 +92,21 @@ const Tab2: React.FC = () => {
         }
     }
 
+    function autoScrollToTop(): Promise<void> {
+            return new Promise<void>(async (resolve) => {
+                if (refContent && refContent.current) {
+                    (refContent.current as any).scrollToTop();
+                }
+
+                resolve();
+            });
+    }
+
     return (
         <IonPage>
             <Header filter={true} filterAction={filterDogs}></Header>
 
-            <IonContent>
+            <IonContent ref={refContent}>
                 <div className="doggos-container">
                     {renderDogs()}
                 </div>
