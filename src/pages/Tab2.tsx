@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
+import React, {useState} from 'react';
+import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent, useIonViewWillEnter} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import './Tab2.css';
 
@@ -34,9 +34,9 @@ const Tab2: React.FC = () => {
             .catch(err => setErrors(err));
     }
 
-    useEffect( () => {
-        fetchData();
-    }, []);
+    useIonViewWillEnter(async () => {
+        await fetchData();
+    });
 
     async function searchNext(e: CustomEvent<void>) {
         await fetchData();
