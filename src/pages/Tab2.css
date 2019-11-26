@@ -1,4 +1,12 @@
-div.doggos-container {
-    display: grid;
-    grid-template-columns: 50% 50%;
+div.dogs-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.dogs-container div.dogs-column {
+    display: block;
+    flex-grow: 1;
+    flex-basis: 50%;
+    max-width: 50%;
 }

@@ -6,14 +6,21 @@ import './Tab2.css';
 const Tab2: React.FC = () => {
 
     const [hasError, setErrors] = useState(false);
-    const [dogs, setDogs] = useState<Dogs | undefined>(undefined);
+
+    const [dogsEven, setDogsEven] = useState<string[]>([]);
+    const [dogsOdd, setDogsOdd] = useState<string[]>([]);
 
     async function fetchData() {
         const res: Response = await fetch('https://dog.ceo/api/breeds/image/random/50');
         res
             .json()
             .then((res) => {
-                setDogs(res);
+                const dogs: Dogs = res;
+
+                if (dogs && dogs.message && dogs.message.length > 0) {
+                    setDogsEven([...dogsEven, ...dogs.message.filter((_a, i) => i % 2)]);
+                    setDogsOdd([...dogsOdd, ...dogs.message.filter((_a, i) => !(i % 2))]);
+                }
             })
             .catch(err => setErrors(err));
     }
@@ -26,7 +33,7 @@ const Tab2: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Tab Two</IonTitle>
+                    <IonTitle className="ion-text-uppercase">So much doggos</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
@@ -38,11 +45,30 @@ const Tab2: React.FC = () => {
     );
 
     function renderDogs() {
-        if (!dogs || !dogs.message || dogs.message.length <= 0 || hasError) {
+        if (hasError) {
             return undefined;
         }
 
-        return dogs.message.map((dogImgUrl: string, i: number) => {
+        if ((!dogsEven || dogsEven.length <= 0) && (!dogsOdd || dogsOdd.length <= 0)) {
+            return undefined;
+        }
+
+        return <div className="dogs-container">
+            <div className="dogs-column">
+                {renderDogsColumn(dogsOdd)}
+            </div>
+            <div className="dogs-column">
+                {renderDogsColumn(dogsEven)}
+            </div>
+        </div>;
+    }
+
+    function renderDogsColumn(dogs: string[]) {
+        if (!dogs || dogs.length <= 0) {
+            return undefined;
+        }
+
+        return dogs.map((dogImgUrl: string, i: number) => {
             return <IonCard key={i}>
                 <img src={dogImgUrl} alt={`A random dog with index ${i}`}/>
             </IonCard>
