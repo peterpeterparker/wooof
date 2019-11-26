@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {
     IonApp,
@@ -39,6 +39,8 @@ import './theme/variables.css';
 import './theme/header.css';
 import './theme/tab.css';
 
+import {SplashScreen} from '@capacitor/core';
+
 // Font Awesome
 import {library, config} from '@fortawesome/fontawesome-svg-core';
 
@@ -55,8 +57,17 @@ config.autoAddCss = false;
 library.add(faHome);
 library.add(faPaw);
 
-const App: React.FC = () => (
-    <IonApp>
+const App: React.FC = () => {
+
+    async function hideSplashScreen() {
+        await SplashScreen.hide();
+    }
+
+    useEffect(() => {
+        hideSplashScreen();
+    }, []);
+
+    return <IonApp>
         <IonReactRouter>
             <IonTabs>
                 <IonRouterOutlet>
@@ -87,6 +98,6 @@ const App: React.FC = () => (
             </IonTabs>
         </IonReactRouter>
     </IonApp>
-);
+};
 
 export default App;
