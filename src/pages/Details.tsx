@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {IonBackButton, IonButtons, IonHeader, IonPage, IonToolbar, IonTitle, IonContent, IonCard} from '@ionic/react';
 import {RouteComponentProps} from 'react-router';
-import {Dog} from '../models/dog';
 
 interface DogDetailPageProps extends RouteComponentProps<{
     breed: string;
@@ -34,7 +33,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
 
         return <IonCard>
             <div>
-                <img src={`https://images.dog.ceo/breeds/${match.params.breed}/${match.params.image}`} alt={`Dog image ${match.params.image}`}/>
+                <img src={`https://images.dog.ceo/breeds/${match.params.breed}/${match.params.image}`} alt={`Dog ${match.params.image}`}/>
             </div>
         </IonCard>
     }

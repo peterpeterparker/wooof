@@ -24,6 +24,11 @@ const Tab2: React.FC = () => {
                 if (dogs && dogs.message && dogs.message.length > 0) {
                     setDogsEven([...dogsEven, ...dogs.message.filter((_a, i) => i % 2)]);
                     setDogsOdd([...dogsOdd, ...dogs.message.filter((_a, i) => !(i % 2))]);
+
+                    setDisableInfiniteScroll(dogs.message.length < 50);
+
+                } else {
+                    setDisableInfiniteScroll(true);
                 }
             })
             .catch(err => setErrors(err));
@@ -39,9 +44,13 @@ const Tab2: React.FC = () => {
         (e.target as HTMLIonInfiniteScrollElement).complete();
     }
 
+    function filterDogs() {
+        console.log('Yolo');
+    }
+
     return (
         <IonPage>
-            <Header></Header>
+            <Header filter={true} filterAction={filterDogs}></Header>
 
             <IonContent>
                 <div className="doggos-container">
