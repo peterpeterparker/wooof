@@ -4,3 +4,7 @@ ion-tab-button > div {
   justify-content: center;
   align-items: center;
 }
+
+ion-tab-button > div ion-label {
+  font-size: 1.4em;
+}

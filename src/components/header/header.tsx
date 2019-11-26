@@ -17,7 +17,7 @@ class Header extends React.Component<HeaderProps> {
 
     render() {
         return <IonHeader>
-            <IonToolbar>
+            <IonToolbar color="tertiary">
                 <IonTitle className="ion-text-uppercase">Wooof</IonTitle>
 
                 {this.renderFilter()}
@@ -30,7 +30,7 @@ class Header extends React.Component<HeaderProps> {
             return undefined;
         }
 
-        return <IonButton slot="end" color="light" onClick={() => this.onFilterClick()}>
+        return <IonButton slot="end" color="tertiary" onClick={() => this.onFilterClick()}>
             <IonIcon icon={options}/>
         </IonButton>
     }

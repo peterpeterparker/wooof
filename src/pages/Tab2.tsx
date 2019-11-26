@@ -1,12 +1,12 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
+import {IonContent, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
 import {Dogs} from '../models/dog';
-import './Tab2.css';
 import {pickerController} from '@ionic/core';
 
 import Header from '../components/header/header';
 import {BreedsService} from '../services/breeds/breeds.service';
 import {PickerColumnOption} from '@ionic/core/dist/types/components/picker/picker-interface';
+import Doggos from '../components/doggos/Doggos';
 
 const Tab2: React.FC = () => {
 
@@ -107,9 +107,7 @@ const Tab2: React.FC = () => {
             <Header filter={true} filterAction={filterDogs}></Header>
 
             <IonContent ref={refContent}>
-                <div className="doggos-container">
-                    {renderDogs()}
-                </div>
+                {renderDogs()}
 
                 <IonInfiniteScroll threshold="100px" disabled={disableInfiniteScroll}
                                      onIonInfinite={(e: CustomEvent<void>) => searchNext(e)}>
@@ -126,36 +124,7 @@ const Tab2: React.FC = () => {
             return undefined;
         }
 
-        if ((!dogsEven || dogsEven.length <= 0) && (!dogsOdd || dogsOdd.length <= 0)) {
-            return undefined;
-        }
-
-        return <div className="dogs-container">
-            <div className="dogs-column">
-                {renderDogsColumn(dogsOdd, 'odd')}
-            </div>
-            <div className="dogs-column">
-                {renderDogsColumn(dogsEven, 'even')}
-            </div>
-        </div>;
-    }
-
-    function renderDogsColumn(dogs: string[], key: string) {
-        if (!dogs || dogs.length <= 0) {
-            return undefined;
-        }
-
-        return dogs.map((dogImgUrl: string, i: number) => {
-
-            const split: string[] = dogImgUrl.split('/');
-
-            const breed: string = split && split.length >= 5 ? encodeURI(split[4]) : '';
-            const image: string = split && split.length >= 6 ? encodeURI(split[5]) : '';
-
-            return <IonCard key={`${key}-${i}`} routerLink={`/tab2/details/${breed}/${image}`}>
-                <img src={dogImgUrl} alt={`A random dog ${image}`}/>
-            </IonCard>
-        });
+        return <Doggos routeTab='tab2' dogsEven={dogsEven} dogsOdd={dogsOdd}></Doggos>;
     }
 };
 

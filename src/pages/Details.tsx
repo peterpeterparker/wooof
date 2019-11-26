@@ -124,9 +124,9 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
+                <IonToolbar color="secondary">
                     <IonButtons slot="start">
-                        <IonBackButton defaultHref="/tab2"/>
+                        <IonBackButton/>
                     </IonButtons>
                     <IonTitle>Detail</IonTitle>
                 </IonToolbar>
