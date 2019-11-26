@@ -69,7 +69,13 @@ const Tab2: React.FC = () => {
         }
 
         return dogs.map((dogImgUrl: string, i: number) => {
-            return <IonCard key={i}>
+
+            const split: string[] = dogImgUrl.split('/');
+
+            const breed: string = split && split.length >= 5 ? encodeURI(split[4]) : '';
+            const image: string = split && split.length >= 6 ? encodeURI(split[5]) : '';
+
+            return <IonCard key={i} routerLink={`/tab2/details/${breed}/${image}`}>
                 <img src={dogImgUrl} alt={`A random dog with index ${i}`}/>
             </IonCard>
         });
