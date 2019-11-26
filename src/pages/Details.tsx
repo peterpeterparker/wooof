@@ -1,6 +1,12 @@
 import React from 'react';
-import {IonBackButton, IonButtons, IonHeader, IonPage, IonToolbar, IonTitle, IonContent, IonCard} from '@ionic/react';
+import {IonBackButton, IonButtons, IonHeader, IonPage, IonToolbar, IonTitle, IonContent, IonCard, IonFab, IonFabButton, IonIcon} from '@ionic/react';
 import {RouteComponentProps} from 'react-router';
+import {share} from 'ionicons/icons';
+import './Details.css';
+
+import { Plugins } from '@capacitor/core';
+
+const { Share } = Plugins;
 
 interface DogDetailPageProps extends RouteComponentProps<{
     breed: string;
@@ -9,6 +15,23 @@ interface DogDetailPageProps extends RouteComponentProps<{
 }
 
 const Details: React.FC<DogDetailPageProps> = ({match}) => {
+
+    async function shareImage() {
+        try {
+            await Share.share({
+                title: 'Wooof',
+                text: 'Checkout the cool doggo I found with Wooof',
+                url: getImgUrl(),
+                dialogTitle: 'Woof Wooof'
+            });
+        } catch (err) {
+            // Whatever
+        }
+    }
+
+    function getImgUrl(): string {
+        return `https://images.dog.ceo/breeds/${match.params.breed}/${match.params.image}`;
+    }
 
     return (
         <IonPage>
@@ -22,6 +45,12 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
             </IonHeader>
             <IonContent>
                 {renderDog()}
+
+                <IonFab className="details-actions">
+                    <IonFabButton color="secondary" onClick={() => shareImage()} aria-label="Share">
+                        <IonIcon icon={share} />
+                    </IonFabButton>
+                </IonFab>
             </IonContent>
         </IonPage>
     );
@@ -33,7 +62,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
 
         return <IonCard>
             <div>
-                <img src={`https://images.dog.ceo/breeds/${match.params.breed}/${match.params.image}`} alt={`Dog ${match.params.image}`}/>
+                <img src={getImgUrl()} alt={`Dog ${match.params.image}`}/>
             </div>
         </IonCard>
     }
