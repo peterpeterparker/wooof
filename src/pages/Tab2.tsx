@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import {IonContent, IonCard, IonPage, IonInfiniteScroll, IonInfiniteScrollContent, useIonViewWillEnter} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import './Tab2.css';
+import {pickerController} from '@ionic/core';
 
 import Header from '../components/header/header';
+import {BreedsService} from '../services/breeds/breeds.service';
+import {PickerColumnOption} from '@ionic/core/dist/types/components/picker/picker-interface';
 
 const Tab2: React.FC = () => {
 
@@ -44,8 +47,36 @@ const Tab2: React.FC = () => {
         (e.target as HTMLIonInfiniteScrollElement).complete();
     }
 
-    function filterDogs() {
-        console.log('Yolo');
+    async function filterDogs() {
+        const breeds: string[] | undefined = await BreedsService.getInstance().getBreeds();
+
+        if (breeds && breeds.length > 0) {
+            const picker: HTMLIonPickerElement = await pickerController.create({
+                columns: [{
+                    name: 'breed',
+                    options: ['no filter', ...breeds].map((breed: string) => {
+                        return {
+                            text: breed,
+                            value: breed
+                        } as PickerColumnOption
+                    })
+                }],
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        role: 'cancel'
+                    },
+                    {
+                        text: 'Confirm',
+                        handler: (value) => {
+                            console.log(`Got Value`, value);
+                        }
+                    }
+                ]
+            });
+
+            await picker.present();
+        }
     }
 
     return (
