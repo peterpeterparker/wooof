@@ -10,7 +10,7 @@ import {
     IonTabs
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
-import {home, send} from 'ionicons/icons';
+import {send} from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -34,10 +34,15 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import './theme/header.css';
 
+// Custom CSS
+import './theme/header.css';
+import './theme/tab.css';
+
+// Font Awesome
 import {library, config} from '@fortawesome/fontawesome-svg-core';
 
+import {faHome} from '@fortawesome/free-solid-svg-icons';
 import {faPaw} from '@fortawesome/free-solid-svg-icons';
 
 // https://github.com/FortAwesome/react-fontawesome/issues/134#issuecomment-471940596
@@ -47,6 +52,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 config.autoAddCss = false;
 
+library.add(faHome);
 library.add(faPaw);
 
 const App: React.FC = () => (
@@ -62,12 +68,16 @@ const App: React.FC = () => (
                 </IonRouterOutlet>
                 <IonTabBar slot="bottom">
                     <IonTabButton tab="tab1" href="/tab1">
-                        <IonIcon icon={home}/>
-                        <IonLabel>Home</IonLabel>
+                        <div>
+                            <FontAwesomeIcon icon={["fas", "home"]} size="2x"/>
+                            <IonLabel>Home</IonLabel>
+                        </div>
                     </IonTabButton>
                     <IonTabButton tab="tab2" href="/tab2">
-                        <FontAwesomeIcon icon={["fas", "paw"]} size="2x"/>
-                        <IonLabel>Doggos</IonLabel>
+                        <div>
+                            <FontAwesomeIcon icon={["fas", "paw"]} size="2x"/>
+                            <IonLabel>Doggos</IonLabel>
+                        </div>
                     </IonTabButton>
                     <IonTabButton tab="tab3" href="/tab3">
                         <IonIcon icon={send}/>

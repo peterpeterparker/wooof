@@ -1,0 +1,6 @@
+ion-tab-button > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

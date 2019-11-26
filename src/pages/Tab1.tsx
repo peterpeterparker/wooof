@@ -30,7 +30,6 @@ const Tab1: React.FC = () => {
         res
             .json()
             .then((res) => {
-                console.log(res);
                 setDog(res)
             })
             .catch(err => setErrors(err));
@@ -83,14 +82,12 @@ const Tab1: React.FC = () => {
                         <IonLabel>Theme Your App</IonLabel>
                     </IonItem>
                 </IonList>
-
-                {hasError}
             </IonContent>
         </IonPage>
     );
 
     function renderDog() {
-        if (!dog) {
+        if (!dog || hasError) {
             return undefined;
         }
 
