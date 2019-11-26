@@ -7,7 +7,7 @@ import {
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
-    IonTabs
+    IonTabs, useIonViewWillEnter
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 import {send} from 'ionicons/icons';
@@ -39,6 +39,8 @@ import './theme/variables.css';
 import './theme/header.css';
 import './theme/tab.css';
 
+import {SplashScreen} from '@capacitor/core';
+
 // Font Awesome
 import {library, config} from '@fortawesome/fontawesome-svg-core';
 
@@ -55,8 +57,13 @@ config.autoAddCss = false;
 library.add(faHome);
 library.add(faPaw);
 
-const App: React.FC = () => (
-    <IonApp>
+const App: React.FC = () => {
+
+    useIonViewWillEnter(async () => {
+        await SplashScreen.hide();
+    });
+
+    return <IonApp>
         <IonReactRouter>
             <IonTabs>
                 <IonRouterOutlet>
@@ -87,6 +94,6 @@ const App: React.FC = () => (
             </IonTabs>
         </IonReactRouter>
     </IonApp>
-);
+};
 
 export default App;
