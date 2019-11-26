@@ -1,0 +1,8 @@
+{
+  "appId": "com.daviddalbusco.wooof",
+  "appName": "wooof",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

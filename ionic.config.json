@@ -1,5 +1,7 @@
 {
   "name": "wooof",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
