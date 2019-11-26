@@ -1,12 +1,25 @@
-import React from 'react';
-import {IonBackButton, IonButtons, IonHeader, IonPage, IonToolbar, IonTitle, IonContent, IonCard, IonFab, IonFabButton, IonIcon} from '@ionic/react';
+import React, {useEffect, useState} from 'react';
+import {
+    IonBackButton,
+    IonButtons,
+    IonHeader,
+    IonPage,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonCard,
+    IonFab,
+    IonFabButton,
+    IonIcon,
+    IonToast
+} from '@ionic/react';
 import {RouteComponentProps} from 'react-router';
-import {share} from 'ionicons/icons';
+import {share, bookmark} from 'ionicons/icons';
 import './Details.css';
 
-import { Plugins } from '@capacitor/core';
+import {Plugins} from '@capacitor/core';
 
-const { Share } = Plugins;
+const {Share, Storage} = Plugins;
 
 interface DogDetailPageProps extends RouteComponentProps<{
     breed: string;
@@ -16,7 +29,30 @@ interface DogDetailPageProps extends RouteComponentProps<{
 
 const Details: React.FC<DogDetailPageProps> = ({match}) => {
 
-    async function shareImage() {
+    const [bookmarked, setBookmarked] = useState<boolean>(false);
+    const [showToastBookmarked, setShowToastBookmarked] = useState<boolean>(false);
+
+    async function initBookmarkDog() {
+        const key: string | undefined = getImgKey();
+
+        if (!key || key === undefined) {
+            return;
+        }
+
+        try {
+            const storedValue = await Storage.get({key: key});
+
+            setBookmarked(storedValue && storedValue.value !== null);
+        } catch (err) {
+            // Whatever
+        }
+    }
+
+    useEffect( () => {
+        initBookmarkDog();
+    }, []);
+
+    async function shareDog() {
         try {
             await Share.share({
                 title: 'Wooof',
@@ -29,7 +65,59 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
         }
     }
 
-    function getImgUrl(): string {
+    async function bookmarkDog() {
+        const key: string | undefined = getImgKey();
+
+        if (!key || key === undefined) {
+            return;
+        }
+
+        try {
+            await Storage.set({
+                key: key,
+                value: JSON.stringify({
+                    breed: match.params.breed,
+                    image: match.params.image
+                })
+            });
+
+            setShowToastBookmarked(true);
+            setBookmarked(true);
+        } catch (err) {
+            // Whatever
+        }
+    }
+
+    async function removeBookmarkDog() {
+        const key: string | undefined = getImgKey();
+
+        if (!key || key === undefined) {
+            return;
+        }
+
+        try {
+            await Storage.remove({key: key});
+
+            setShowToastBookmarked(true);
+            setBookmarked(false);
+        } catch (err) {
+            // Whatever
+        }
+    }
+
+    function getImgKey(): string | undefined | undefined {
+        if (!match || !match.params || !match.params.breed || !match.params.image) {
+            return undefined;
+        }
+
+        return `${match.params.breed}-${match.params.image}`;
+    }
+
+    function getImgUrl(): string | undefined {
+        if (!match || !match.params || !match.params.breed || !match.params.image) {
+            return undefined;
+        }
+
         return `https://images.dog.ceo/breeds/${match.params.breed}/${match.params.image}`;
     }
 
@@ -47,10 +135,24 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                 {renderDog()}
 
                 <IonFab className="details-actions">
-                    <IonFabButton color="secondary" onClick={() => shareImage()} aria-label="Share">
-                        <IonIcon icon={share} />
+                    <IonFabButton color="secondary" onClick={() => shareDog()} aria-label="Share"
+                                  className="ion-margin">
+                        <IonIcon icon={share}/>
+                    </IonFabButton>
+
+                    <IonFabButton color={bookmarked ? 'primary' : 'tertiary'} onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
+                                  className="ion-margin">
+                        <IonIcon icon={bookmark}/>
                     </IonFabButton>
                 </IonFab>
+
+                <IonToast
+                    isOpen={showToastBookmarked}
+                    onDidDismiss={() => setShowToastBookmarked(false)}
+                    message={bookmarked ? 'Doggo bookmark removed.' : 'Doggo bookmarked.'}
+                    duration={1000}
+                    position="top"
+                />
             </IonContent>
         </IonPage>
     );
