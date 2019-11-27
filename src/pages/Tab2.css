@@ -1,0 +1,40 @@
+div.chips {
+    background: rgba(var(--ion-color-secondary-rgb), 0.08);
+    color: var(--ion-color-secondary);
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 8px;
+    font-size: inherit;
+}
+
+div.chips ion-icon {
+    padding: 4px 0;
+}
+
+div.chips ion-label {
+    padding: 0px 4px;
+    margin-bottom: 2px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.chips button {
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background: none;
+    display: inline-flex;
+
+    cursor: pointer;
+}
+
+div.chips button[disabled] {
+     color: rgba(var(--ion-color-tertiary-rgb), 0.2);
+     cursor: inherit;
+}

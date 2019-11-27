@@ -17,10 +17,10 @@ class Header extends React.Component<HeaderProps> {
     }
 
     render() {
-        return <div>
+        return <main>
             <h1 className="ion-padding-start ion-padding-end">{this.props.title}</h1>
             {this.renderFilter()}
-        </div>
+        </main>
     }
 
     private renderFilter() {
@@ -28,7 +28,7 @@ class Header extends React.Component<HeaderProps> {
             return undefined;
         }
 
-        return <IonButton color="primary" onClick={() => this.onFilterClick()} expand="full" shape="round" className="ion-padding">
+        return <IonButton color="primary" onClick={() => this.onFilterClick()} expand="full" shape="round" className="ion-padding" style={{'marginBottom': '24px'}}>
             <IonIcon icon={options} slot="start"/>
             <IonLabel>Filter</IonLabel>
         </IonButton>

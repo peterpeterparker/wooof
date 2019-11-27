@@ -1,7 +1,10 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {IonContent, IonPage, IonInfiniteScroll, IonInfiniteScrollContent} from '@ionic/react';
+import {IonContent, IonPage, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonLabel} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import {pickerController} from '@ionic/core';
+import {close} from 'ionicons/icons';
+
+import './Tab2.css';
 
 import Header from '../components/header/Header';
 import {BreedsService} from '../services/breeds/breeds.service';
@@ -108,6 +111,8 @@ const Tab2: React.FC = () => {
                 <Header title="Doggos" filter={true} filterAction={filterDogs}></Header>
 
                 <main>
+                    {renderBreed()}
+
                     {renderDogs()}
 
                     <IonInfiniteScroll threshold="100px" disabled={disableInfiniteScroll}
@@ -127,6 +132,20 @@ const Tab2: React.FC = () => {
         }
 
         return <Doggos routeTab='tab2' dogsEven={dogsEven} dogsOdd={dogsOdd}></Doggos>;
+    }
+
+    function renderBreed() {
+        if (!breed) {
+            return undefined;
+        }
+
+        return <div className="chips ion-margin">
+            <button onClick={() => setBreed(undefined)}>
+                <IonIcon icon={close}></IonIcon>
+            </button>
+
+            <IonLabel>{breed}</IonLabel>
+        </div>
     }
 };
 
