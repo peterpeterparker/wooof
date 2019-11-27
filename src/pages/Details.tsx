@@ -143,7 +143,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                             <IonIcon icon={share}/>
                         </IonFabButton>
 
-                        <IonFabButton color={bookmarked ? 'danger' : 'tertiary'} onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
+                        <IonFabButton color={bookmarked ? 'danger' : 'medium'}  onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
                                       className="ion-margin">
                             <FontAwesomeIcon icon={["fas", "heart"]} size="2x"/>
                         </IonFabButton>

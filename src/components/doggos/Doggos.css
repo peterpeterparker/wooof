@@ -1,7 +1,3 @@
-ion-card[class*="ion-card"] {
-    --background: var(--ion-color-light);
-}
-
 div.dogs-container {
     display: flex;
     flex-direction: row;
