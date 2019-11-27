@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {IonPage, IonContent, useIonViewWillEnter} from '@ionic/react';
+import {IonPage, IonContent, useIonViewWillEnter, IonRefresher, IonRefresherContent} from '@ionic/react';
+import { RefresherEventDetail } from '@ionic/core';
 import Header from '../components/header/Header';
 
 import {Plugins} from '@capacitor/core';
@@ -11,6 +12,8 @@ const Tab3Page: React.FC = () => {
 
     const [dogsEven, setDogsEven] = useState<string[]>([]);
     const [dogsOdd, setDogsOdd] = useState<string[]>([]);
+
+    const [disableNav, setDisableNav] = useState<boolean>(false);
 
     async function loadData() {
         const keys = await Storage.keys();
@@ -31,12 +34,25 @@ const Tab3Page: React.FC = () => {
         await loadData();
     });
 
+    async function doRefresh(event: CustomEvent<RefresherEventDetail>) {
+        await loadData();
+
+        setTimeout(() => {
+            event.detail.complete();
+            setDisableNav(false);
+        }, 500);
+    }
+
     return (
         <IonPage>
             <Header></Header>
             <IonContent>
+                <IonRefresher slot="fixed" onIonRefresh={($event: CustomEvent<RefresherEventDetail>) => doRefresh($event)} onIonPull={() => setDisableNav(true)}>
+                    <IonRefresherContent></IonRefresherContent>
+                </IonRefresher>
+
                 <main>
-                    <Doggos routeTab='tab3' dogsEven={dogsEven} dogsOdd={dogsOdd}></Doggos>
+                    <Doggos routeTab='tab3' dogsEven={dogsEven} dogsOdd={dogsOdd} disableNav={disableNav}></Doggos>
                 </main>
             </IonContent>
         </IonPage>

@@ -6,9 +6,10 @@ type DoggosProps = {
     routeTab: string;
     dogsEven: string[];
     dogsOdd: string[];
+    disableNav?: boolean;
 }
 
-const Doggos: React.FC<DoggosProps> = ({routeTab, dogsEven, dogsOdd}) => {
+const Doggos: React.FC<DoggosProps> = ({routeTab, dogsEven, dogsOdd, disableNav}) => {
 
     return (
         <div className="doggos-container">
@@ -43,7 +44,7 @@ const Doggos: React.FC<DoggosProps> = ({routeTab, dogsEven, dogsOdd}) => {
             const breed: string = split && split.length >= 5 ? encodeURI(split[4]) : '';
             const image: string = split && split.length >= 6 ? encodeURI(split[5]) : '';
 
-            return <IonCard key={`${key}-${i}`} routerLink={`/${routeTab}/details/${breed}/${image}`}>
+            return <IonCard key={`${key}-${i}`} routerLink={`/${routeTab}/details/${breed}/${image}`} className={disableNav ? 'disabled' : ''}>
                 <deckgo-lazy-img img-src={dogImgUrl} img-alt={`A random dog ${image}`}></deckgo-lazy-img>
             </IonCard>
         });

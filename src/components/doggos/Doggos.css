@@ -21,3 +21,8 @@ deckgo-lazy-img {
     --deckgo-lazy-img-display: block;
     --deckgo-lazy-img-object-fit: cover;
 }
+
+ion-card.disabled {
+    pointer-events: none;
+    cursor: default;
+}
