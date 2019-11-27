@@ -1,8 +1,9 @@
 import React from 'react';
-import {IonHeader, IonTitle, IonToolbar, IonButton, IonIcon} from '@ionic/react';
+import {IonButton, IonIcon, IonLabel} from '@ionic/react';
 import {options} from 'ionicons/icons';
 
 type HeaderProps = {
+    title: string;
     filter: boolean;
     filterAction: Function | undefined;
 }
@@ -16,13 +17,10 @@ class Header extends React.Component<HeaderProps> {
     }
 
     render() {
-        return <IonHeader>
-            <IonToolbar color="tertiary">
-                <IonTitle className="ion-text-uppercase">Wooof</IonTitle>
-
-                {this.renderFilter()}
-            </IonToolbar>
-        </IonHeader>
+        return <div>
+            <h1 className="ion-padding-start ion-padding-end">{this.props.title}</h1>
+            {this.renderFilter()}
+        </div>
     }
 
     private renderFilter() {
@@ -30,13 +28,14 @@ class Header extends React.Component<HeaderProps> {
             return undefined;
         }
 
-        return <IonButton slot="end" color="tertiary" onClick={() => this.onFilterClick()}>
-            <IonIcon icon={options}/>
+        return <IonButton color="primary" onClick={() => this.onFilterClick()} expand="full" shape="round" className="ion-padding">
+            <IonIcon icon={options} slot="start"/>
+            <IonLabel>Filter</IonLabel>
         </IonButton>
     }
 }
 
-export default ({ filter= false, filterAction }: {filter?: boolean, filterAction?: Function | undefined}) => (
-    <Header filter={filter} filterAction={filterAction} >
+export default ({ title, filter= false, filterAction }: {title: string, filter?: boolean, filterAction?: Function | undefined}) => (
+    <Header title={title} filter={filter} filterAction={filterAction}>
     </Header>
 )

@@ -45,8 +45,9 @@ const Tab3Page: React.FC = () => {
 
     return (
         <IonPage>
-            <Header></Header>
             <IonContent>
+                <Header title="Favorites"></Header>
+
                 <IonRefresher slot="fixed" onIonRefresh={($event: CustomEvent<RefresherEventDetail>) => doRefresh($event)} onIonPull={() => setDisableNav(true)}>
                     <IonRefresherContent></IonRefresherContent>
                 </IonRefresher>

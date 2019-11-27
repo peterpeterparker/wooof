@@ -130,7 +130,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                     <IonButtons slot="start">
                         <IonBackButton/>
                     </IonButtons>
-                    <IonTitle>Detail</IonTitle>
+                    <IonTitle>Details</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>

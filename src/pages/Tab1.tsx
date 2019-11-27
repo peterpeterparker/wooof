@@ -41,10 +41,10 @@ const Tab1: React.FC = () => {
 
     return (
         <IonPage>
-            <Header></Header>
-
             <IonContent>
                 <main>
+                    <Header title="Welcome"></Header>
+
                     <IonCard className="welcome-card">
                         <div className="welcome-card-container">
                             {renderDog()}

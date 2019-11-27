@@ -104,9 +104,9 @@ const Tab2: React.FC = () => {
 
     return (
         <IonPage>
-            <Header filter={true} filterAction={filterDogs}></Header>
-
             <IonContent ref={refContent}>
+                <Header title="Doggos" filter={true} filterAction={filterDogs}></Header>
+
                 <main>
                     {renderDogs()}
 
