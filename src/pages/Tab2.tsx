@@ -107,14 +107,16 @@ const Tab2: React.FC = () => {
             <Header filter={true} filterAction={filterDogs}></Header>
 
             <IonContent ref={refContent}>
-                {renderDogs()}
+                <main>
+                    {renderDogs()}
 
-                <IonInfiniteScroll threshold="100px" disabled={disableInfiniteScroll}
-                                     onIonInfinite={(e: CustomEvent<void>) => searchNext(e)}>
-                    <IonInfiniteScrollContent
-                        loadingText="Loading more good doggos...">
-                    </IonInfiniteScrollContent>
-                </IonInfiniteScroll>
+                    <IonInfiniteScroll threshold="100px" disabled={disableInfiniteScroll}
+                                       onIonInfinite={(e: CustomEvent<void>) => searchNext(e)}>
+                        <IonInfiniteScrollContent
+                            loadingText="Loading more good doggos...">
+                        </IonInfiniteScrollContent>
+                    </IonInfiniteScroll>
+                </main>
             </IonContent>
         </IonPage>
     );

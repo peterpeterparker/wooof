@@ -132,19 +132,21 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                {renderDog()}
+                <main>
+                    {renderDog()}
 
-                <IonFab className="details-actions">
-                    <IonFabButton color="secondary" onClick={() => shareDog()} aria-label="Share"
-                                  className="ion-margin">
-                        <IonIcon icon={share}/>
-                    </IonFabButton>
+                    <IonFab className="details-actions">
+                        <IonFabButton color="secondary" onClick={() => shareDog()} aria-label="Share"
+                                      className="ion-margin">
+                            <IonIcon icon={share}/>
+                        </IonFabButton>
 
-                    <IonFabButton color={bookmarked ? 'primary' : 'tertiary'} onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
-                                  className="ion-margin">
-                        <IonIcon icon={bookmark}/>
-                    </IonFabButton>
-                </IonFab>
+                        <IonFabButton color={bookmarked ? 'primary' : 'tertiary'} onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
+                                      className="ion-margin">
+                            <IonIcon icon={bookmark}/>
+                        </IonFabButton>
+                    </IonFab>
+                </main>
 
                 <IonToast
                     isOpen={showToastBookmarked}

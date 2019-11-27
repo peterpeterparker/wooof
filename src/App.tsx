@@ -36,6 +36,7 @@ import './theme/variables.css';
 // Custom CSS
 import './theme/header.css';
 import './theme/tab.css';
+import './theme/content.css';
 
 import {SplashScreen} from '@capacitor/core';
 

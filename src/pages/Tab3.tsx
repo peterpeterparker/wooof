@@ -35,7 +35,9 @@ const Tab3Page: React.FC = () => {
         <IonPage>
             <Header></Header>
             <IonContent>
-                <Doggos routeTab='tab3' dogsEven={dogsEven} dogsOdd={dogsOdd}></Doggos>
+                <main>
+                    <Doggos routeTab='tab3' dogsEven={dogsEven} dogsOdd={dogsOdd}></Doggos>
+                </main>
             </IonContent>
         </IonPage>
     );

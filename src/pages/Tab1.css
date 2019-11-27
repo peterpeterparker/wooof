@@ -9,3 +9,21 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media screen and (min-width: 720px) {
+  .welcome-card .welcome-card-container {
+    height: 45vh;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .welcome-card .welcome-card-container {
+    height: 55vh;
+  }
+}
+
+@media screen and (min-width: 1140px) {
+  .welcome-card .welcome-card-container {
+    height: 65vh;
+  }
+}

@@ -44,43 +44,44 @@ const Tab1: React.FC = () => {
             <Header></Header>
 
             <IonContent>
+                <main>
+                    <IonCard className="welcome-card">
+                        <div className="welcome-card-container">
+                            {renderDog()}
+                        </div>
+                        <IonCardHeader>
+                            <IonCardSubtitle>So much doggos <FontAwesomeIcon icon={["fas", "paw"]} size="1x"/></IonCardSubtitle>
+                            <IonCardTitle>Welcome to Wooof</IonCardTitle>
+                        </IonCardHeader>
+                        <IonCardContent>
+                            <p>
+                                An application to browse the internet's biggest collection of open source dog pictures.
+                            </p>
+                        </IonCardContent>
+                    </IonCard>
 
-                <IonCard className="welcome-card">
-                    <div className="welcome-card-container">
-                        {renderDog()}
-                    </div>
-                    <IonCardHeader>
-                        <IonCardSubtitle>So much doggos <FontAwesomeIcon icon={["fas", "paw"]} size="1x"/></IonCardSubtitle>
-                        <IonCardTitle>Welcome to Wooof</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>
-                        <p>
-                            An application to browse the internet's biggest collection of open source dog pictures.
-                        </p>
-                    </IonCardContent>
-                </IonCard>
-
-                <IonList lines="none">
-                    <IonListHeader>
-                        <IonLabel>Resources</IonLabel>
-                    </IonListHeader>
-                    <IonItem href="https://ionicframework.com/docs/" target="_blank">
-                        <IonIcon slot="start" color="medium" icon={book}/>
-                        <IonLabel>Ionic Documentation</IonLabel>
-                    </IonItem>
-                    <IonItem href="https://ionicframework.com/docs/building/scaffolding" target="_blank">
-                        <IonIcon slot="start" color="medium" icon={build}/>
-                        <IonLabel>Scaffold Out Your App</IonLabel>
-                    </IonItem>
-                    <IonItem href="https://ionicframework.com/docs/layout/structure" target="_blank">
-                        <IonIcon slot="start" color="medium" icon={grid}/>
-                        <IonLabel>Change Your App Layout</IonLabel>
-                    </IonItem>
-                    <IonItem href="https://ionicframework.com/docs/theming/basics" target="_blank">
-                        <IonIcon slot="start" color="medium" icon={colorFill}/>
-                        <IonLabel>Theme Your App</IonLabel>
-                    </IonItem>
-                </IonList>
+                    <IonList lines="none">
+                        <IonListHeader>
+                            <IonLabel>Resources</IonLabel>
+                        </IonListHeader>
+                        <IonItem href="https://ionicframework.com/docs/" target="_blank">
+                            <IonIcon slot="start" color="medium" icon={book}/>
+                            <IonLabel>Ionic Documentation</IonLabel>
+                        </IonItem>
+                        <IonItem href="https://ionicframework.com/docs/building/scaffolding" target="_blank">
+                            <IonIcon slot="start" color="medium" icon={build}/>
+                            <IonLabel>Scaffold Out Your App</IonLabel>
+                        </IonItem>
+                        <IonItem href="https://ionicframework.com/docs/layout/structure" target="_blank">
+                            <IonIcon slot="start" color="medium" icon={grid}/>
+                            <IonLabel>Change Your App Layout</IonLabel>
+                        </IonItem>
+                        <IonItem href="https://ionicframework.com/docs/theming/basics" target="_blank">
+                            <IonIcon slot="start" color="medium" icon={colorFill}/>
+                            <IonLabel>Theme Your App</IonLabel>
+                        </IonItem>
+                    </IonList>
+                </main>
             </IonContent>
         </IonPage>
     );
