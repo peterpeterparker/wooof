@@ -14,10 +14,12 @@ import {
     IonToast
 } from '@ionic/react';
 import {RouteComponentProps} from 'react-router';
-import {share, bookmark} from 'ionicons/icons';
+import {share} from 'ionicons/icons';
 import './Details.css';
 
 import {Plugins} from '@capacitor/core';
+
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const {Share, Storage} = Plugins;
 
@@ -132,7 +134,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <main>
+                <main className="details">
                     {renderDog()}
 
                     <IonFab className="details-actions">
@@ -141,9 +143,9 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                             <IonIcon icon={share}/>
                         </IonFabButton>
 
-                        <IonFabButton color={bookmarked ? 'primary' : 'tertiary'} onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
+                        <IonFabButton color={bookmarked ? 'danger' : 'tertiary'} onClick={() => bookmarked ? removeBookmarkDog() : bookmarkDog()} aria-label="Bookmark"
                                       className="ion-margin">
-                            <IonIcon icon={bookmark}/>
+                            <FontAwesomeIcon icon={["fas", "heart"]} size="2x"/>
                         </IonFabButton>
                     </IonFab>
                 </main>
@@ -151,7 +153,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
                 <IonToast
                     isOpen={showToastBookmarked}
                     onDidDismiss={() => setShowToastBookmarked(false)}
-                    message={bookmarked ? 'Doggo bookmark removed.' : 'Doggo bookmarked.'}
+                    message={bookmarked ? 'Sad doggo removed from your favorites.' : 'Happy doggo added to your favorites.'}
                     duration={1000}
                     position="top"
                 />

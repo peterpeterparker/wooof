@@ -1,6 +1,21 @@
-ion-fab.details-actions {
+main.details ion-fab.details-actions {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
+}
+
+main.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100%;
+}
+
+main.details ion-card {
+    max-width: calc(80vw - 32px);
 }

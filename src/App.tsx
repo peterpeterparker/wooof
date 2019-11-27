@@ -43,7 +43,7 @@ import {SplashScreen} from '@capacitor/core';
 // Font Awesome
 import {library, config} from '@fortawesome/fontawesome-svg-core';
 
-import {faHome, faPaw, faBone} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faPaw, faHeart} from '@fortawesome/free-solid-svg-icons';
 
 // https://github.com/FortAwesome/react-fontawesome/issues/134#issuecomment-471940596
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -54,7 +54,7 @@ config.autoAddCss = false;
 
 library.add(faHome);
 library.add(faPaw);
-library.add(faBone);
+library.add(faHeart);
 
 const App: React.FC = () => {
 
@@ -92,8 +92,8 @@ const App: React.FC = () => {
                     </IonTabButton>
                     <IonTabButton tab="tab3" href="/tab3">
                         <div>
-                            <FontAwesomeIcon icon={["fas", "bone"]} size="2x"/>
-                            <IonLabel>Bookmarks</IonLabel>
+                            <FontAwesomeIcon icon={["fas", "heart"]} size="2x"/>
+                            <IonLabel>Favorites</IonLabel>
                         </div>
                     </IonTabButton>
                 </IonTabBar>
