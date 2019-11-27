@@ -46,7 +46,6 @@ export class BreedsService {
     private initBreedTypes(): Promise<void> {
         return new Promise<void>(async (resolve) => {
             if (this.breeds) {
-                this.breeds = undefined;
                 resolve();
                 return;
             }

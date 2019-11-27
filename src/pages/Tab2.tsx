@@ -64,6 +64,7 @@ const Tab2: React.FC = () => {
     }
 
     async function filterDogs() {
+
         const breeds: string[] | undefined = await BreedsService.getInstance().getBreeds();
 
         if (breeds && breeds.length > 0) {
