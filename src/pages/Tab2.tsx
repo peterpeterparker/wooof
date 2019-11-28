@@ -28,7 +28,7 @@ const Tab2: React.FC = () => {
         const even: string[] = reset ? [] : dogsEven;
         const odd: string[] = reset ? [] : dogsOdd;
 
-        const url: string = breed ? `https://dog.ceo/api/breed/${breed.split(' ').join('/')}/images/random/50` : 'https://dog.ceo/api/breeds/image/random/50';
+        const url: string = breed ? `https://dog.ceo/api/breed/${breed.split(' ').join('/')}/images/random/20` : 'https://dog.ceo/api/breeds/image/random/20';
 
         const res: Response = await fetch(url);
         res
@@ -40,15 +40,10 @@ const Tab2: React.FC = () => {
                     setDogsEven([...even, ...dogs.message.filter((_a, i) => i % 2)]);
                     setDogsOdd([...odd, ...dogs.message.filter((_a, i) => !(i % 2))]);
 
-                    setDisableInfiniteScroll(dogs.message.length < 50);
+                    setDisableInfiniteScroll(dogs.message.length < 20);
                 } else {
                     setDisableInfiniteScroll(true);
                 }
-
-                // Hack to scroll top
-                setTimeout(async () => {
-                    await autoScrollToTop();
-                }, 100);
             })
             .catch(err => setErrors(err));
     }
