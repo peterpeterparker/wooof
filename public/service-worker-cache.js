@@ -1,5 +1,3 @@
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
-
 workbox.routing.registerRoute(
     // Cache Image File
     new RegExp(/.*\.(?:png|jpg|jpeg|svg|gif)/),
