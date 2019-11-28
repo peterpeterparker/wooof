@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IonContent, IonPage, IonInfiniteScroll, IonInfiniteScrollContent, IonIcon, IonLabel} from '@ionic/react';
 import {Dogs} from '../models/dog';
 import {pickerController} from '@ionic/core';
@@ -12,8 +12,6 @@ import {PickerColumnOption} from '@ionic/core/dist/types/components/picker/picke
 import Doggos from '../components/doggos/Doggos';
 
 const Tab2: React.FC = () => {
-
-    const refContent = useRef(null);
 
     const [hasError, setErrors] = useState(false);
 
@@ -50,6 +48,7 @@ const Tab2: React.FC = () => {
 
     useEffect( () => {
         fetchData(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [breed]);
 
     async function searchNext(e: CustomEvent<void>) {
@@ -91,19 +90,9 @@ const Tab2: React.FC = () => {
         }
     }
 
-    function autoScrollToTop(): Promise<void> {
-            return new Promise<void>(async (resolve) => {
-                if (refContent && refContent.current) {
-                    (refContent.current as any).scrollToTop();
-                }
-
-                resolve();
-            });
-    }
-
     return (
         <IonPage>
-            <IonContent ref={refContent}>
+            <IonContent>
                 <Header title="Doggos" filter={true} filterAction={filterDogs}></Header>
 
                 <main>

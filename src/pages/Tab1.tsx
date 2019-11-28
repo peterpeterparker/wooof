@@ -12,7 +12,6 @@ import {
     IonListHeader,
     IonPage, useIonViewWillEnter
 } from '@ionic/react';
-import {logoIonic} from 'ionicons/icons';
 import React, {useState} from 'react';
 import './Tab1.css';
 import {Dog} from '../models/dog';
@@ -20,7 +19,6 @@ import {Dog} from '../models/dog';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import Header from '../components/header/Header';
-import {log} from 'util';
 
 const Tab1: React.FC = () => {
 
@@ -80,17 +78,17 @@ const Tab1: React.FC = () => {
                         <IonListHeader>
                             <IonLabel>Open Source</IonLabel>
                         </IonListHeader>
-                        <IonItem href="https://dog.ceo/dog-api/" target="_blank">
+                        <IonItem href="https://dog.ceo/dog-api/" target="_blank" rel="noopener noreferrer">
                             <div slot="start"><FontAwesomeIcon icon={["fas", "database"]} size="1x"/></div>
                             <IonLabel>Dog pictures API</IonLabel>
                         </IonItem>
-                        <IonItem href="https://github.com/peterpeterparker/wooof" target="_blank">
+                        <IonItem href="https://github.com/peterpeterparker/wooof" target="_blank" rel="noopener noreferrer">
                             <div slot="start"><FontAwesomeIcon icon={["fab", "github"]} size="1x"/></div>
                             <IonLabel>Application source code</IonLabel>
                         </IonItem>
                     </IonList>
 
-                    <IonLabel className="ion-padding">Developed by <a href="https://daviddalbusco.com" target="_blank">David Dal Busco</a>.</IonLabel>
+                    <IonLabel className="ion-padding">Developed by <a href="https://daviddalbusco.com" target="_blank" rel="noopener noreferrer">David Dal Busco</a>.</IonLabel>
                 </main>
             </IonContent>
         </IonPage>

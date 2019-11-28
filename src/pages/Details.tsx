@@ -52,6 +52,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
 
     useEffect( () => {
         initBookmarkDog();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     async function shareDog() {
