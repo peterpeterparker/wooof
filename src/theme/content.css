@@ -3,3 +3,11 @@ ion-content main {
     margin-left: auto;
     margin-right: auto;
 }
+
+a {
+    color: inherit;
+
+    background: linear-gradient( transparent 0%, transparent calc(50% - 8px), rgba(var(--ion-color-tertiary-rgb), 0.35) calc(50% - 8px), rgba(var(--ion-color-tertiary-rgb), 0.35) 100% );
+    background-size: 100% 240%;
+    text-decoration: none;
+}

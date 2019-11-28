@@ -12,13 +12,15 @@ import {
     IonListHeader,
     IonPage, useIonViewWillEnter
 } from '@ionic/react';
-import {book, build, colorFill, grid} from 'ionicons/icons';
+import {logoIonic} from 'ionicons/icons';
 import React, {useState} from 'react';
 import './Tab1.css';
 import {Dog} from '../models/dog';
+
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 import Header from '../components/header/Header';
+import {log} from 'util';
 
 const Tab1: React.FC = () => {
 
@@ -60,27 +62,35 @@ const Tab1: React.FC = () => {
                         </IonCardContent>
                     </IonCard>
 
-                    <IonList lines="none">
+                    <IonList lines="none" className="welcome-navigation ion-no-padding ion-padding-top">
                         <IonListHeader>
-                            <IonLabel>Resources</IonLabel>
+                            <IonLabel>Navigate</IonLabel>
                         </IonListHeader>
-                        <IonItem href="https://ionicframework.com/docs/" target="_blank">
-                            <IonIcon slot="start" color="medium" icon={book}/>
-                            <IonLabel>Ionic Documentation</IonLabel>
+                        <IonItem routerLink="/tab2">
+                            <div slot="start"><FontAwesomeIcon icon={["fas", "paw"]} size="1x"/></div>
+                            <IonLabel>Browse doggos</IonLabel>
                         </IonItem>
-                        <IonItem href="https://ionicframework.com/docs/building/scaffolding" target="_blank">
-                            <IonIcon slot="start" color="medium" icon={build}/>
-                            <IonLabel>Scaffold Out Your App</IonLabel>
-                        </IonItem>
-                        <IonItem href="https://ionicframework.com/docs/layout/structure" target="_blank">
-                            <IonIcon slot="start" color="medium" icon={grid}/>
-                            <IonLabel>Change Your App Layout</IonLabel>
-                        </IonItem>
-                        <IonItem href="https://ionicframework.com/docs/theming/basics" target="_blank">
-                            <IonIcon slot="start" color="medium" icon={colorFill}/>
-                            <IonLabel>Theme Your App</IonLabel>
+                        <IonItem routerLink="/tab2">
+                            <div slot="start"><FontAwesomeIcon icon={["fas", "heart"]} size="1x"/></div>
+                            <IonLabel>Your favorites</IonLabel>
                         </IonItem>
                     </IonList>
+
+                    <IonList lines="none" className="welcome-navigation ion-no-padding">
+                        <IonListHeader>
+                            <IonLabel>Open Source</IonLabel>
+                        </IonListHeader>
+                        <IonItem href="https://dog.ceo/dog-api/" target="_blank">
+                            <div slot="start"><FontAwesomeIcon icon={["fas", "database"]} size="1x"/></div>
+                            <IonLabel>Dog pictures API</IonLabel>
+                        </IonItem>
+                        <IonItem href="https://github.com/peterpeterparker/wooof" target="_blank">
+                            <div slot="start"><FontAwesomeIcon icon={["fab", "github"]} size="1x"/></div>
+                            <IonLabel>Application source code</IonLabel>
+                        </IonItem>
+                    </IonList>
+
+                    <IonLabel className="ion-padding">Developed by <a href="https://daviddalbusco.com" target="_blank">David Dal Busco</a>.</IonLabel>
                 </main>
             </IonContent>
         </IonPage>

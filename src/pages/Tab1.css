@@ -23,19 +23,27 @@ ion-card.welcome-card .welcome-card-container img {
 }
 
 @media screen and (min-width: 720px) {
-  .welcome-card .welcome-card-container {
+  ion-card.welcome-card .welcome-card-container {
     height: 45vh;
   }
 }
 
 @media screen and (min-width: 960px) {
-  .welcome-card .welcome-card-container {
+  ion-card.welcome-card .welcome-card-container {
     height: 55vh;
   }
 }
 
 @media screen and (min-width: 1140px) {
-  .welcome-card .welcome-card-container {
+  ion-card.welcome-card .welcome-card-container {
     height: 65vh;
   }
+}
+
+ion-list.welcome-navigation {
+  margin-bottom: 32px;
+}
+
+ion-list.welcome-navigation div[slot="start"] {
+  color: var(--ion-color-medium);
 }
