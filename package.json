@@ -1,6 +1,6 @@
 {
   "name": "wooof",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@capacitor/core": "1.3.0",
