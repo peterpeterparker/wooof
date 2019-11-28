@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonButton, IonIcon, IonLabel} from '@ionic/react';
+import {IonButton, IonIcon, IonLabel, IonToolbar, IonHeader} from '@ionic/react';
 import {options} from 'ionicons/icons';
 
 type HeaderProps = {
@@ -18,7 +18,7 @@ class Header extends React.Component<HeaderProps> {
 
     render() {
         return <main>
-            <h1 className="ion-padding-start ion-padding-end">{this.props.title}</h1>
+            <IonHeader><IonToolbar><h1 className="ion-padding-start ion-padding-end">{this.props.title}</h1></IonToolbar></IonHeader>
             {this.renderFilter()}
         </main>
     }
