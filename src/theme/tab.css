@@ -8,3 +8,7 @@ ion-tab-button > div {
 ion-tab-button > div ion-label {
   font-size: 1.4em;
 }
+
+ion-tab-button ion-icon {
+  font-size: 2em;
+}

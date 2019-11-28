@@ -52,7 +52,7 @@ const Tab1: React.FC = () => {
                             {renderDog()}
                         </div>
                         <IonCardHeader>
-                            <IonCardSubtitle>So much doggos <FontAwesomeIcon icon={["fas", "paw"]} size="1x"/></IonCardSubtitle>
+                            <IonCardSubtitle>So much doggos <IonIcon src="/assets/icon/wooof-paw.svg"></IonIcon></IonCardSubtitle>
                             <IonCardTitle>Welcome to Wooof</IonCardTitle>
                         </IonCardHeader>
                         <IonCardContent>
@@ -67,7 +67,7 @@ const Tab1: React.FC = () => {
                             <IonLabel>Navigate</IonLabel>
                         </IonListHeader>
                         <IonItem routerLink="/tab2">
-                            <div slot="start"><FontAwesomeIcon icon={["fas", "paw"]} size="1x"/></div>
+                            <div slot="start"><IonIcon src="/assets/icon/wooof-paw.svg"></IonIcon></div>
                             <IonLabel>Browse doggos</IonLabel>
                         </IonItem>
                         <IonItem routerLink="/tab2">

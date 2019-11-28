@@ -6,7 +6,8 @@ import {
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
-    IonTabs
+    IonTabs,
+    IonIcon
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 import Tab1 from './pages/Tab1';
@@ -43,7 +44,7 @@ import {SplashScreen} from '@capacitor/core';
 // Font Awesome
 import {library, config} from '@fortawesome/fontawesome-svg-core';
 
-import {faHome, faPaw, faHeart, faDatabase} from '@fortawesome/free-solid-svg-icons';
+import {faHome, faHeart, faDatabase} from '@fortawesome/free-solid-svg-icons';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
 // https://github.com/FortAwesome/react-fontawesome/issues/134#issuecomment-471940596
@@ -54,7 +55,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 config.autoAddCss = false;
 
 library.add(faHome);
-library.add(faPaw);
 library.add(faHeart);
 library.add(faDatabase);
 
@@ -90,7 +90,7 @@ const App: React.FC = () => {
                     </IonTabButton>
                     <IonTabButton tab="tab2" href="/tab2">
                         <div>
-                            <FontAwesomeIcon icon={["fas", "paw"]} size="2x"/>
+                            <IonIcon src="/assets/icon/wooof-paw.svg"></IonIcon>
                             <IonLabel>Doggos</IonLabel>
                         </div>
                     </IonTabButton>
