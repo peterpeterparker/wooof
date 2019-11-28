@@ -5,7 +5,7 @@
   
   <p><strong>Wooof</strong> - An application to browse the internet's biggest collection of open source dog pictures.</p>
   
-  <p>An application developed to experiment <a href="https://ionicframework.com/docs/react">Ionic+React</a> for the <a href="https://www.meetup.com/fr-FR/Ionic-Zurich/events/265767496/">Ionic Zürich Meetup</a> Thursday 5th December 2019.</p>
+  <p>I have developed it to experiment <a href="https://ionicframework.com/docs/react">Ionic + React</a> for the <a href="https://www.meetup.com/fr-FR/Ionic-Zurich/events/265767496/">Ionic Zürich Meetup</a> Thursday 5th December 2019.</p>
   
   <br/>
   
