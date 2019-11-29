@@ -169,7 +169,7 @@ const Details: React.FC<DogDetailPageProps> = ({match}) => {
 
         return <IonCard>
             <div>
-                <img src={getImgUrl()} alt={`Dog ${match.params.image}`}/>
+                <deckgo-lazy-img img-src={getImgUrl()} img-alt={`Dog ${match.params.image}`}></deckgo-lazy-img>
             </div>
         </IonCard>
     }
