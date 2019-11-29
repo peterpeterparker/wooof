@@ -17,9 +17,9 @@ ion-card.welcome-card .welcome-card-container {
 }
 
 ion-card.welcome-card .welcome-card-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  --deckgo-lazy-img-width: 100%;
+  --deckgo-lazy-img-height: 100%;
+  --deckgo-lazy-img-object-fit: cover;
 }
 
 @media screen and (min-width: 720px) {

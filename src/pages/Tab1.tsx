@@ -99,7 +99,7 @@ const Tab1: React.FC = () => {
             return undefined;
         }
 
-        return <img src={dog.message} alt="A random dog"/>
+        return <deckgo-lazy-img img-src={dog.message} img-alt="A random dog"></deckgo-lazy-img>
     }
 };
 
